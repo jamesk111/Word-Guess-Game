@@ -5,9 +5,12 @@ var wordArray = [
     ["Jazz", "Origami", "Awkward", "Crypt", "Dwarves", "Fjord", "Kiosk", "Ostracize", "Queue", "Zombie"] //Hard Words
 ];
 
+//Game Object
 var game = {
 
     gameWords: [],
+
+    currentDifficulty: 0,
 
     gameLevels: [],
 
@@ -24,17 +27,25 @@ var game = {
 
     setDifficulty: function setDifficulty(difficulty) {
         this.buildWords(difficulty, this.gameLevels);
+        this.currentDifficulty = difficulty;
     }
 };
 
-window.onload = function () {
-    game.gameLevels = wordArray;
-    // document.getElementById("easy").addEventListener("change", game.setDifficulty(0));
-    // document.getElementById("intermediate").addEventListener("change", game.setDifficulty(1));
-    // document.getElementById("hard").addEventListener("change", game.setDifficulty(2));
-    // var difficulty = document.getElementById("difficulty-wrapper");
-    // for (i = 0; i < difficulty.length; i++) {
-    //     difficulty.onclick
-    // }
-    game.setDifficulty(0);
-};
+//Build our word levels into the game oject.
+game.gameLevels = wordArray;
+
+//jQuery for the Bootstrap Radio Buttons
+$(document).ready(function () {
+
+    //Set up the initial load state for the game
+    $("#difficulty-wrapper .easy").button("toggle");
+    game.setDifficulty(game.currentDifficulty);
+
+    //Change when a difficulty is selected
+    $("#difficulty-wrapper .btn").click(function () {
+        if ($(".btn").index(this) !== game.currentDifficulty) {
+            game.setDifficulty($(".btn").index(this));
+        }
+    });
+
+});

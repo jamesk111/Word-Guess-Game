@@ -18,18 +18,24 @@
     </header>
 
     <div class="container d-flex flex-column text-center mt-5">
+
+        <!-- Difficulty Selection -->
         <h2>Select Difficulty</h2>
-        <div class="btn-group btn-group-toggle ml-auto mr-auto difficulty-wrapper" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-                <input type="radio" name="difficulty" id="easy" autocomplete="off" checked>Easy</label>
+        <div class="btn-group btn-group-toggle ml-auto mr-auto" id="difficulty-wrapper" data-toggle="buttons">
+            <label class="btn btn-secondary easy">
+                <input type="radio" name="difficulty" id="easy" autocomplete="off">Easy
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="difficulty" id="intermediate" autocomplete="off">Intermediate</label>
+                <input type="radio" name="difficulty" id="intermediate" autocomplete="off">Intermediate
             </label>
             <label class="btn btn-secondary">
-                <input type="radio" name="difficulty" id="hard" autocomplete="off">Hard</label>
+                <input type="radio" name="difficulty" id="hard" autocomplete="off">Hard
             </label>
         </div>
+
+        <!-- Game Section -->
+        <div id="game-section"></div>
+
     </div>
 
     <!-- JavaScript -->
