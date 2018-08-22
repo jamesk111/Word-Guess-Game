@@ -8,6 +8,8 @@
     <title>Word Guess Game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
 </head>
 
@@ -34,7 +36,23 @@
         </div>
 
         <!-- Game Section -->
-        <div id="game-section"></div>
+        <div id="game-section">
+            <h2 class="mt-5">Guess The Word</h2>
+            <p id="answer-display"></p>
+            <h3>Incorrect Guesses</h3>
+            <p id="guess-display"></p>
+            <!-- Buttons to give up or load a new game -->
+            <div class="mt-5">
+                <button type="button" class="btn btn-secondary action-btn">
+                    <i class="far fa-times-circle fa-2x"></i>
+                    <p>Give Up!</p>
+                </button>
+                <button type="button" class="btn btn-secondary action-btn">
+                        <i class="far fa-arrow-alt-circle-right fa-2x"></i>
+                    <p>Next Word</p>
+                </button>
+            </div>
+        </div>
 
     </div>
 

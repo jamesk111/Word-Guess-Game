@@ -1,0 +1,11 @@
+#answer-display {
+    letter-spacing: 10px;
+}
+
+.action-btn {
+    width: 6rem;
+}
+
+.action-btn p {
+    margin: 0;
+}
