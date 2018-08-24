@@ -9,6 +9,7 @@ function Game() {
     this.difficulty = 0;
     this.word = "";
     this.guessCount = 0;
+    this.guessLimit = 0;
     this.guessList = "";
     this.answerDisplay = "";
     this.wins = 0;
@@ -42,16 +43,28 @@ function Game() {
     this.makeGuess = function (letter) {
         let answer = this.word.split("");
         let display = this.answerDisplay.split("");
+        letter = letter.toLowerCase();
 
-        if (this.word.indexOf(letter.toLowerCase()) >= 0) {
+        //Determine if the letter is part of the word or not.
+        if (this.word.indexOf(letter) >= 0) {
             for (i = 0; i < answer.length; i++) {
-                if (letter.toLowerCase() === answer[i]) {
+                if (letter === answer[i]) {
                     display[i] = letter.toUpperCase();
                 }
             }
         } else if (this.guessList.indexOf(letter.toUpperCase()) < 0) {
             this.guessCount++;
             this.guessList += letter.toUpperCase();
+        }
+
+        //Update the answer display
+        this.answerDisplay = display.join("");
+
+        //Did the player win/lose?
+        if (this.answerDisplay.toLowerCase() === this.word) {
+            this.wins++;
+        } else if (this.guessCount === this.guessLimit) {
+            this.losses++;
         }
     }
 }
@@ -62,8 +75,13 @@ function buildGameDisplay() {
     document.getElementById("guess-display").textContent = "None!";
 }
 
+function updateScore() {
+    document.getElementById("wins").textContent = game.wins;
+    document.getElementById("losses").textContent = game.losses;
+}
+
 //Event listener for keystrokes.
-window.addEventListener("keyup", function (e) {
+window.onkeyup = function (e) {
 
     //We only want to process for alpha characters
     if (e.key.match(/^[a-zA-Z]\b/)) {
@@ -72,19 +90,22 @@ window.addEventListener("keyup", function (e) {
         if (game.guessList) {
             document.getElementById("guess-display").textContent = game.guessList;
         }
+        updateScore();
     }
+};
 
-});
+// });
 
 //Event listener for radio buttons
 var difficulties = document.querySelectorAll(".diffButton");
 difficulties.forEach(function (difficulty, difficultyIndex) {
-    difficulty.addEventListener("click", function () {
+    // difficulty.addEventListener("click", function () {
+    difficulty.click = function () {
         if (difficultyIndex !== game.difficulty) {
             game.setDifficulty(difficultyIndex);
             buildGameDisplay();
         }
-    });
+    };
 });
 
 //Build our game
