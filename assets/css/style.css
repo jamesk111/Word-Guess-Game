@@ -9,3 +9,7 @@
 .action-btn p {
     margin: 0;
 }
+
+input {
+    display: none;
+}

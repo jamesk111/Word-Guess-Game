@@ -1,22 +1,27 @@
-//Initialize
-var wordArray = [
-    ["Cow", "Cat", "Moth", "Crow", "Trap", "Wack", "Lake", "Rip", "Lack", "Reap"], //Easy Words
-    ["Turtle", "Heroku", "Missile", "Racket", "Rocket", "Trippy", "Roland", "Marker", "Spacey", "Lemonade"], //Intermediate Words
-    ["Jazz", "Origami", "Awkward", "Crypt", "Dwarves", "Fjord", "Kiosk", "Ostracize", "Queue", "Zombie"] //Hard Words
-];
+//Game Constructor
+function Game() {
+    this.gameLevels = [
+        ["Cow", "Cat", "Moth", "Crow", "Trap", "Wack", "Lake", "Rip", "Lack", "Reap"], //Easy Words
+        ["Turtle", "Heroku", "Missile", "Racket", "Rocket", "Trippy", "Roland", "Marker", "Spacey", "Lemonade"], //Intermediate Words
+        ["Jazz", "Origami", "Awkward", "Crypt", "Dwarves", "Fjord", "Kiosk", "Ostracize", "Queue", "Zombie"] //Hard Words
+    ];
+    this.level = [];
+    this.difficulty = 0;
+    this.word = "";
+    this.guessCount = 0;
+    this.guessList = "";
+    this.answerDisplay = "";
+    this.wins = 0;
+    this.losses = 0;
 
-//Game Object
-var game = {
+    this.setDifficulty = function (difficulty) {
+        if (difficulty <= this.gameLevels.length) {
+            this.difficulty = difficulty;
+            this.setLevel(difficulty);
+        }
+    };
 
-    currentDifficulty: 0,
-    currentWord: "",
-    currentGuessCount: 0,
-    answerDisplay: "",
-    guessList: [],
-    gameWords: [],
-    gameLevels: [],
-
-    buildWords: function buildWords(difficulty) {
+    this.setLevel = function (difficulty) {
         let words = [];
         for (i = 0; i < this.gameLevels[difficulty].length; i++) {
             let wordEntry = {};
@@ -24,57 +29,68 @@ var game = {
             wordEntry.guessLimit = this.gameLevels[difficulty][i].length;
             words.push(wordEntry);
         }
-        this.gameWords = words;
-    },
+        this.level = words;
+        this.setWord();
+    };
 
-    setDifficulty: function setDifficulty(difficulty) {
-        this.buildWords(difficulty);
-        this.currentDifficulty = difficulty;
-    },
+    this.setWord = function () {
+        let getWord = this.level[Math.floor(Math.random() * this.level.length)];
+        this.word = getWord.text.toLowerCase();
+        this.answerDisplay = Array(this.word.length + 1).join("_");
+    };
 
-    setWord: function setWord() {
-        this.currentWord = this.gameWords[Math.floor(Math.random() * this.gameWords.length)].text;
-        this.answerDisplay = Array(game.currentWord.length + 1).join("_");
-    },
+    this.makeGuess = function (letter) {
+        let answer = this.word.split("");
+        let display = this.answerDisplay.split("");
 
-    makeGuess: function makeGuess() {
-
+        if (this.word.indexOf(letter.toLowerCase()) >= 0) {
+            for (i = 0; i < answer.length; i++) {
+                if (letter.toLowerCase() === answer[i]) {
+                    display[i] = letter.toUpperCase();
+                }
+            }
+        } else if (this.guessList.indexOf(letter.toUpperCase()) < 0) {
+            this.guessCount++;
+            this.guessList += letter.toUpperCase();
+        }
     }
-
-};
+}
 
 //This function builds the game display form the game object.
 function buildGameDisplay() {
-    game.setWord();
-    document.getElementById("answer-display").innerHTML = game.answerDisplay;
-    document.getElementById("guess-display").innerHTML = "None!";
+    document.getElementById("answer-display").textContent = game.answerDisplay;
+    document.getElementById("guess-display").textContent = "None!";
 }
 
 //Event listener for keystrokes.
-window.addEventListener("keyup", function(e){
+window.addEventListener("keyup", function (e) {
 
     //We only want to process for alpha characters
     if (e.key.match(/^[a-zA-Z]\b/)) {
-        //dostuff
+        game.makeGuess(e.key);
+        document.getElementById("answer-display").textContent = game.answerDisplay;
+        if (game.guessList) {
+            document.getElementById("guess-display").textContent = game.guessList;
+        }
     }
 
 });
 
-//jQuery for the Bootstrap Radio Buttons
-$(document).ready(function () {
-
-    //Set up the initial load state for the game
-    game.gameLevels = wordArray;
-    $("#difficulty-wrapper .easy").button("toggle");
-    game.setDifficulty(game.currentDifficulty);
-    buildGameDisplay();
-
-    //Change when a difficulty is selected
-    $("#difficulty-wrapper .btn").click(function () {
-        if ($(".btn").index(this) !== game.currentDifficulty) {
-            game.setDifficulty($(".btn").index(this));
+//Event listener for radio buttons
+var difficulties = document.querySelectorAll(".diffButton");
+difficulties.forEach(function (difficulty, difficultyIndex) {
+    difficulty.addEventListener("click", function () {
+        if (difficultyIndex !== game.difficulty) {
+            game.setDifficulty(difficultyIndex);
             buildGameDisplay();
         }
     });
-
 });
+
+//Build our game
+var game = new Game();
+game.setLevel(game.difficulty);
+buildGameDisplay();
+
+//Select the first radio button by default.
+difficulties[0].click();
