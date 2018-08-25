@@ -147,7 +147,6 @@ difficulties.forEach(function (difficulty, difficultyIndex) {
             game.setDifficulty(difficultyIndex);
             buildGameDisplay();
         }
-        document.getElementById("keyboard").focus();
     });
 });
 
