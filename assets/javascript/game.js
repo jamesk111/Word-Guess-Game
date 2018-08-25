@@ -1,9 +1,9 @@
 //Game Constructor
 function Game() {
     this.gameLevels = [
-        ["Cow", "Cat", "Moth", "Crow", "Trap", "Wack", "Lake", "Rip", "Lack", "Reap"], //Easy Words
-        ["Turtle", "Heroku", "Missile", "Racket", "Rocket", "Trippy", "Roland", "Marker", "Spacey", "Lemonade"], //Intermediate Words
-        ["Jazz", "Origami", "Awkward", "Crypt", "Dwarves", "Fjord", "Kiosk", "Ostracize", "Queue", "Zombie"] //Hard Words
+        ["Labrador", "Pug", "Boxer", "Husky", "Beagle", "Collie", "Chihuahua", "Dalmatian", "Bulldog", "Poodle"], //Easy Words
+        ["Newfoundland", "Terrier", "Pointer", "Greyhound", "Rocket", "Rottweiler", "Mastiff", "Bloodhound", "Spaniel", "Bullmastiff"], //Intermediate Words
+        ["Akita", "Affenpinscher", "Beauceron", "Briard", "Combai", "Cursinu", "Kaikadi", "Jagdterrier", "Eurasier", "Hygenhund"] //Hard Words
     ];
     this.level = [];
     this.difficulty = 0;
