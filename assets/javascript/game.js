@@ -132,12 +132,8 @@ document.addEventListener("keyup", function (e) {
         document.getElementById("guess-count").textContent = game.guessCount;
         if (game.outcome) {
             updateScore();
-            if (game.outcome === "win") {
-                document.getElementById("answer-display").style.color = "limegreen";
-            } else {
-                document.getElementById("answer-display").textContent = game.word.toUpperCase();
-                document.getElementById("answer-display").style.color = "red";
-            }
+            game.setWord();
+            buildGameDisplay();
         }
     }
 
