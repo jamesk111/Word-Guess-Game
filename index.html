@@ -19,67 +19,73 @@
         <h1>Word Guess Game</h1>
     </header>
 
-    <div class="container d-flex flex-column text-center mt-5">
+    <div id="start" class="container text-center mt-5">
+        <button type="button" id="start-button" class="btn btn-secondary">Press any key to get started!</button>
+    </div>
 
-        <!-- Difficulty Selection -->
-        <div class="container border rounded bg-light py-3">
-            <h2>Select Difficulty</h2>
-            <div class="btn-group ml-auto mr-auto" id="difficulty-wrapper" data-toggle="buttons">
-                <label class="btn btn-secondary diffButton">
-                    <input type="radio" name="difficulty" autocomplete="off">Easy
-                </label>
-                <label class="btn btn-secondary diffButton">
-                    <input type="radio" name="difficulty" autocomplete="off">Intermediate
-                </label>
-                <label class="btn btn-secondary diffButton">
-                    <input type="radio" name="difficulty" autocomplete="off">Hard
-                </label>
-            </div>
-        </div>
+    <div id="game-container">
+        <div class="container d-flex flex-column text-center mt-3">
 
-        <!-- Scoreboard -->
-        <div class="container border rounded bg-light mt-2 py-3">
-            <div class="row">
-                <div class="col d-none d-sm-block">
-                </div>
-                <div class="col">
-                    <h4>Wins</h4>
-                    <p id="wins">0</p>
-                </div>
-                <div class="col">
-                    <h4>Losses</h4>
-                    <p id="losses">0</p>
-                </div>
-                <div class="col d-none d-sm-block">
+            <!-- Difficulty Selection -->
+            <div class="container border rounded bg-light py-3">
+                <h2>Select Difficulty</h2>
+                <div class="btn-group ml-auto mr-auto" id="difficulty-wrapper" data-toggle="buttons">
+                    <label class="btn btn-secondary diffButton">
+                        <input type="radio" name="difficulty" autocomplete="off">Easy
+                    </label>
+                    <label class="btn btn-secondary diffButton">
+                        <input type="radio" name="difficulty" autocomplete="off">Intermediate
+                    </label>
+                    <label class="btn btn-secondary diffButton">
+                        <input type="radio" name="difficulty" autocomplete="off">Hard
+                    </label>
                 </div>
             </div>
-        </div>
 
-        <!-- Game Section -->
-        <div id="game-section" class="container border rounded bg-light mt-2 py-3">
-
-            <!-- Answer Display -->
-            <h2>Guess The Word</h2>
-            <p id="answer-display"></p>
-
-            <!-- Guess Tracker -->
-            <h3>Incorrect Guesses</h3>
-            <p>(<span id="guess-count">null</span>/<span id="guess-limit">null</span>)</p>
-            <p id="guess-display"></p>
-
-            <!-- Buttons to give up or load a new game -->
-            <div class="mt-5">
-                <button type="button" id="give-up" class="btn btn-secondary action-btn">
-                    <i class="far fa-times-circle fa-2x"></i>
-                    <p>Give Up!</p>
-                </button>
-                <button type="button" id="next-word" class="btn btn-secondary action-btn">
-                    <i class="far fa-arrow-alt-circle-right fa-2x"></i>
-                    <p>Next Word</p>
-                </button>
+            <!-- Scoreboard -->
+            <div class="container border rounded bg-light mt-2 py-3">
+                <div class="row">
+                    <div class="col d-none d-sm-block">
+                    </div>
+                    <div class="col">
+                        <h4>Wins</h4>
+                        <p id="wins">0</p>
+                    </div>
+                    <div class="col">
+                        <h4>Losses</h4>
+                        <p id="losses">0</p>
+                    </div>
+                    <div class="col d-none d-sm-block">
+                    </div>
+                </div>
             </div>
-        </div>
 
+            <!-- Game Section -->
+            <div id="game-section" class="container border rounded bg-light mt-2 py-3">
+
+                <!-- Answer Display -->
+                <h2>Guess The Word</h2>
+                <p id="answer-display"></p>
+
+                <!-- Guess Tracker -->
+                <h3>Incorrect Guesses</h3>
+                <p>(Guesses Made: <span id="guess-count">null</span> Guess Limit: <span id="guess-limit">null</span>)</p>
+                <p id="guess-display"></p>
+
+                <!-- Buttons to give up or load a new game -->
+                <div class="mt-5">
+                    <button type="button" id="give-up" class="btn btn-secondary action-btn">
+                        <i class="far fa-times-circle fa-2x"></i>
+                        <p>Give Up!</p>
+                    </button>
+                    <button type="button" id="next-word" class="btn btn-secondary action-btn">
+                        <i class="far fa-arrow-alt-circle-right fa-2x"></i>
+                        <p>Next Word</p>
+                    </button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- JavaScript -->

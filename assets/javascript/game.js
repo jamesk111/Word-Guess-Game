@@ -87,11 +87,15 @@ Game.prototype.giveUp = function () {
     this.answerDisplay = this.word.toUpperCase();
 }
 
+var game = new Game();
+
 //This function builds the game display form the game object.
 function buildGameDisplay() {
     document.getElementById("answer-display").textContent = game.answerDisplay;
-    document.getElementById("answer-display").style.color = "black";
+    document.getElementById("answer-display").style.color = "unset";
     document.getElementById("guess-display").textContent = "None!";
+    document.getElementById("guess-count").textContent = "0";
+    document.getElementById("guess-limit").textContent = game.guessLimit;
 }
 
 //This function updates the scores on the screen.
@@ -100,8 +104,23 @@ function updateScore() {
     document.getElementById("losses").textContent = game.losses;
 }
 
+//Build the game
+function buildGame() {
+    game.setLevel(game.difficulty);
+    buildGameDisplay();
+    difficulties[0].click();
+}
+
 //Event listener for keystrokes.
 document.addEventListener("keyup", function (e) {
+
+    //Check if we're starting the game
+    if (document.getElementById("start").style.display !== "none") {
+        buildGame();
+        document.getElementById("start").style.display = "none"
+        document.getElementById("game-container").style.visibility = "visible";
+        document.getElementById("game-container").style.animationPlayState = "running";
+    }
 
     //We only want to process for alpha characters
     if (e.key.match(/^[a-zA-Z]\b/)) {
@@ -110,6 +129,7 @@ document.addEventListener("keyup", function (e) {
         if (game.guessList) {
             document.getElementById("guess-display").textContent = game.guessList;
         }
+        document.getElementById("guess-count").textContent = game.guessCount;
         if (game.outcome) {
             updateScore();
             if (game.outcome === "win") {
@@ -136,8 +156,8 @@ difficulties.forEach(function (difficulty, difficultyIndex) {
 
 //Game Buttons (Next Word / Give Up)
 var gameButton = document.querySelectorAll(".action-btn");
-gameButton.forEach(function (btn, index) {
-    btn.addEventListener("click", function() {
+gameButton.forEach(function (btn) {
+    btn.addEventListener("click", function () {
         if (btn.id === "give-up") {
             game.giveUp();
             updateScore();
@@ -154,10 +174,10 @@ gameButton.forEach(function (btn, index) {
     });
 });
 
-//Build our game
-var game = new Game();
-game.setLevel(game.difficulty);
-buildGameDisplay();
-
-//Select the first radio button by default.
-difficulties[0].click();
+//Event listener for start game button
+document.getElementById("start-button").addEventListener("click", function () {
+    buildGame();
+    document.getElementById("start").style.display = "none"
+    document.getElementById("game-container").style.visibility = "visible";
+    document.getElementById("game-container").style.animationPlayState = "running";
+});

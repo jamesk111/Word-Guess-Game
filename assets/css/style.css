@@ -10,6 +10,29 @@
     margin: 0;
 }
 
+#game-container {
+    visibility: collapse;
+    -webkit-animation: fadeIn 3s;
+    animation: fadeIn 3s;
+    animation-play-state: paused;
+}
+
 input {
     display: none;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
 }
