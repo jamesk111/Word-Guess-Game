@@ -17,6 +17,10 @@
     animation-play-state: paused;
 }
 
+#keyboard {
+    visibility: collapse;
+}
+
 input {
     display: none;
 }
