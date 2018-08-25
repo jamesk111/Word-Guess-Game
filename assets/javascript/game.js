@@ -120,6 +120,7 @@ document.addEventListener("keyup", function (e) {
         document.getElementById("start").style.display = "none"
         document.getElementById("game-container").style.visibility = "visible";
         document.getElementById("game-container").style.animationPlayState = "running";
+        return;
     }
 
     //We only want to process for alpha characters
