@@ -1,3 +1,35 @@
+body {
+    background-image: url("../images/puppy-bg.jpg");
+    background-size: cover;
+}
+
+h1 {
+    font-family: 'Aclonica', sans-serif;
+}
+
+h2 {
+    font-family: 'Rock Salt', cursive;
+}
+
+#subheader {
+    text-shadow: 5px 1px 10px black;
+    -webkit-text-stroke: 1px skyblue;
+}
+
+.bones {
+    -webkit-text-stroke: 1px skyblue;
+}
+
+.fa-spin-reverse {
+    -webkit-animation: a 2s infinite linear reverse;
+    animation: a 2s infinite linear reverse;
+}
+
+.theme-image {
+    height: 10rem;
+    border-radius: 50%;
+}
+
 #answer-display {
     letter-spacing: 10px;
 }
@@ -17,12 +49,13 @@
     animation-play-state: paused;
 }
 
-#keyboard {
-    visibility: collapse;
-}
-
 input {
     display: none;
+}
+
+.scoreboard {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem;
 }
 
 @-webkit-keyframes fadeIn {
