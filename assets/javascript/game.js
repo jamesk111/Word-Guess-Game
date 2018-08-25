@@ -147,7 +147,7 @@ difficulties.forEach(function (difficulty, difficultyIndex) {
             game.setDifficulty(difficultyIndex);
             buildGameDisplay();
         }
-        body.focus();
+        difficulty.focus();
     });
 });
 
