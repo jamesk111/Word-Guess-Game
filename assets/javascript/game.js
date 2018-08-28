@@ -1,3 +1,8 @@
+//Polyfill for forEach on NodeList
+if (!NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
 //Game Constructor
 function Game() {
     this.gameLevels = [
